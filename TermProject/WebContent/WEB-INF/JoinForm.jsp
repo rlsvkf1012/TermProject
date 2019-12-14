@@ -4,111 +4,120 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-
-	<title> È¸¿ø°¡ÀÔ </title>
-
-	<!-- css --> 
-	<link href='' rel='stylesheet' style='text.css'/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+tr{
+  border-bottom: 10px solid #e9e9e9e9;
+}
+</style>
+<title> íšŒì›ê°€ì… </title>
+<link rel = "stylesheet" href="css/bootstrap.css">
 	
 	<script type="text/javascript">
 	
-	// ¾ÆÀÌµğ, ºñ¹Ğ¹øÈ£°¡ ÀÔ·ÂµÇ¾ú´ÂÁö È®ÀÎ
+	/*
+	// ì•„ì´ë””, ë¹„ë°€ë²ˆí˜¸ê°€ ì…ë ¥ë˜ì—ˆëŠ”ì§€ í™•ì¸
 	function checkvalue()
 	{
 		if(!document.userInfo.id.value){
-			alert("¾ÆÀÌµğ¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			alert("ì•„ì´ë””ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			return false;
 		}
 		
 		if(!document.userInfo.password.value){
-			alert("ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.");
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.");
 			return false;
 		}
 		
-		// ºñ¹Ğ¹øÈ£ ÀçÀÔ·Â
+		// ë¹„ë°€ë²ˆí˜¸ ì¬ì…ë ¥
 		if(document.userInfo.password.value!=document.userInfo.passwordcheck.value){
-			alert("ºñ¹Ğ¹øÈ£¸¦ µ¿ÀÏÇÏ°Ô ÀÔ·ÂÇÏ¼¼¿ä.");
+			alert("ë¹„ë°€ë²ˆí˜¸ë¥¼ ë™ì¼í•˜ê²Œ ì…ë ¥í•˜ì„¸ìš”.");
 			return false;
 		}
-	}
+	}*/
 	
-	// Ãë¼Ò ¹öÆ°À» Å¬¸¯ÇÏ¸é ·Î±×ÀÎ È­¸éÀ¸·Î ÀÌµ¿
+	// ì·¨ì†Œ ë²„íŠ¼ì„ í´ë¦­í•˜ë©´ ë¡œê·¸ì¸ í™”ë©´ìœ¼ë¡œ ì´ë™
 	function goLoginForm(){
 		location.href="LoginForm.jsp";
 	}	
-	</script>
-	
+	</script>	
 </head>
-<body>
 
+
+<body style ="padding-top: 20px">>
+<div class="container">
+		<div class="col-md-3"></div>
+		<div class="col-md-6">
+		<div class="jumbotron" style="padding-top: 20px; text-align:center">
+				<form action="JoinPro.jsp" name="memberInfo" method="post">
 	<br><br>
-	<b><font size="6" color="gray">È¸¿ø°¡ÀÔ</font></b>
-	<br><br><br>
-	
-	<form action="JoinPro.jsp" name="memberInfo" method="post">
+	<h3 style="text-align: center">íšŒì›ê°€ì…</h3><br><br><br>
+
 		<table>
 			<tr>
-				<td id="title">¾ÆÀÌµğ </td>
+				<td id="title">ì•„ì´ë”” </td>
 				<td>
 					<input type="text" name="id" maxlength="9">
 				</td>
-			</tr>			
+			</tr>
 			<tr>
-				<td id="title">ºñ¹Ğ¹øÈ£ </td>
+				<td id="title">ë¹„ë°€ë²ˆí˜¸ </td>
 				<td>
 					<input type="password" name="password" maxlength="10">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ºñ¹Ğ¹øÈ£ È®ÀÎ </td>
+				<td id="title"> ë¹„ë°€ë²ˆí˜¸ í™•ì¸ </td>
 				<td>
 					<input type="password" name="passwordcheck" maxlength="10">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀÌ¸§ </td>
+				<td id="title"> ì´ë¦„ </td>
 				<td>
 					<input type="text" name="name" maxlength="40">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀÌ¸ŞÀÏ </td>
+				<td id="title"> ì´ë©”ì¼ </td>
 				<td>
-					<input type="text" name="email" maxlength="50">
-					<select name="mail2">
-						<option>naver.com</option>
-						<option>daum.net</option>
-						<option>gmail.com</option>
-						<option>nate.com</option>
+					<input type="text" name="email1" maxlength="50">
+					<select name="email2">
+						<option>@naver.com</option>
+						<option>@daum.net</option>
+						<option>@gmail.com</option>
+						<option>@nate.com</option>
 					</select>
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀüÈ­¹øÈ£ </td>
+				<td id="title"> ì „í™”ë²ˆí˜¸ </td>
 				<td>
 					<input type="text" name="phonenumber" maxlength="11">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> È¸¿ø±¸ºĞ </td>
+				<td id="title"> íšŒì›êµ¬ë¶„ </td>
 				<td>
 					<select name="type">
-						<option>ÇĞºÎ</option>
-						<option>´ëÇĞ¿ø</option>
-						<option>±³Á÷¿ø</option>
+						<option>undergraduate</option>
+						<option>postgraduate</option>
+						<option>faculty</option>
 					</select>
 				</td>
 			</tr>
 		</table>
 		<br>
-		<input type="submit" value="°¡ÀÔ">
-		<input type="button" value="Ãë¼Ò" onclick="goLoginForm()">		
+		<input type="submit" value="ê°€ì…">
+		<input type="button" value="ì·¨ì†Œ" onclick="goLoginForm()">		
 	</form>	
-
+			</div>
+		</div>
+	</div>	
 </body>
 </html>
