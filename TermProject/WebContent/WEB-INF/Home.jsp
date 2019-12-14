@@ -18,15 +18,15 @@
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>¸ÞÀÎÆäÀÌÁö</title>
+<title>ë©”ì¸íŽ˜ì´ì§€</title>
 <link rel = "stylesheet" href="css/bootstrap.css">
 
 </head>
 <body>
 	<nav class="navbar navbar-default">
-		<span class="navbar-text"> <%=id %> ´Ô ¹Ý°©½À´Ï´Ù ! </span>
+		<span class="navbar-text"> <%=id %> ë‹˜ ë°˜ê°‘ìŠµë‹ˆë‹¤ ! </span>
 		<ul id="nav" class="nav navbar-nav">
-			<li><a href="logout.jsp">·Î±×¾Æ¿ô</a></li>
+			<li><a href="ë¡œê·¸ì•„ì›ƒ.jsp">ë¡œê·¸ì•„ì›ƒ</a></li>
 		</ul>
 	</nav>
 	
@@ -36,20 +36,18 @@
 		<div class="jumbotron" style="padding-top: 20px; text-align:center">
 				<form method="post">
 				
-			<h3 style="text-align: center">»ç¿ëÀÚ ¸Þ´º</h3><br><br><br>
-			<button type="button" class = "btn btn-info" onclick="location.href='Info.jsp'" > µµ ¼­  Á¤ º¸ </button><br><br><br><br>
-			<button type="button" class = "btn btn-info" onclick="location.href='Book.jsp'" >³» µµ¼­ °ü¸®</button><br><br><br><br>
-			<button type="button" class = "btn btn-info" onclick="location.href='rent.jsp'" >³» Á¤º¸ °ü¸®</button>
+			<h3 style="text-align: center">ì‚¬ìš©ìž ë©”ë‰´</h3><br><br><br>
+			<button type="button" class = "btn btn-info" onclick="location.href='Info.jsp'" > ë„ ì„œ  ì • ë³´ </button><br><br><br><br>
+			<button type="button" class = "btn btn-info" onclick="location.href='Book.jsp'" >ë‚´ ë„ì„œ ê´€ë¦¬</button><br><br><br><br>
+			<button type="button" class = "btn btn-info" onclick="location.href='ë‚´ì •ë³´.jsp'" >ë‚´ ì •ë³´ ê´€ë¦¬</button>
 				</form><br><br><br>		
 			<% if(id.equals("admin")){ %>
-    		<a href="adminHome.jsp">°ü¸®ÀÚ ¸Þ´º º¸±â</a><%}%>
+    		<a href="adminHome.jsp">ê´€ë¦¬ìž ë©”ë‰´ ë³´ê¸°</a><%}%>
 		</div>
 		</div>
 	</div>	
 <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.js"></script>
-
-
 
 </body>
 </html>
