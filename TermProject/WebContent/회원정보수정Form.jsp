@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>È¸¿øÁ¤º¸¼öÁ¤</title>
+<title>íšŒì›ì •ë³´ìˆ˜ì •</title>
 
 <link rel = "stylesheet" href="css/bootstrap.css">
 
@@ -17,7 +17,7 @@ tr{
 	
 <script type="text/javascript">
 	function goBack(){
-		location.href="³»Á¤º¸Form.jsp";
+		location.href="ë‚´ì •ë³´.jsp";
 	}	
 </script>	
 
@@ -27,31 +27,31 @@ tr{
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 		<div class="jumbotron" style="padding-top: 20px; text-align:center">
-		<form action="È¸¿øÁ¤º¸¼öÁ¤Pro.jsp" name="³»Á¤º¸¼öÁ¤" method="post">
-	<h3 style="text-align: center">³» Á¤º¸ ¼öÁ¤</h3><br><br><br>
+		<form action="íšŒì›ì •ë³´ìˆ˜ì •Pro.jsp" name="ë‚´ì •ë³´ìˆ˜ì •" method="post">
+	<h3 style="text-align: center">ë‚´ ì •ë³´ ìˆ˜ì •</h3><br><br><br>
 	<table>
 			<tr>
-				<td id="title">¾ÆÀÌµð </td>
+				<td id="title">ì•„ì´ë”” </td>
 				<td>
 					<input type="text" name="id" maxlength="9">
 				</td>
 			</tr>
 			<tr>
-				<td id="title">ºñ¹Ð¹øÈ£ </td>
+				<td id="title">ë¹„ë°€ë²ˆí˜¸ </td>
 				<td>
 					<input type="password" name="password" maxlength="10">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀÌ¸§ </td>
+				<td id="title"> ì´ë¦„ </td>
 				<td>
 					<input type="text" name="name" maxlength="40">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀÌ¸ÞÀÏ </td>
+				<td id="title"> ì´ë©”ì¼ </td>
 				<td>
 					<input type="text" name="email1" maxlength="50">
 					<select name="email2">
@@ -64,14 +64,14 @@ tr{
 			</tr>
 			
 			<tr>
-				<td id="title"> ÀüÈ­¹øÈ£ </td>
+				<td id="title"> ì „í™”ë²ˆí˜¸ </td>
 				<td>
 					<input type="text" name="phone" maxlength="11">
 				</td>
 			</tr>
 			
 			<tr>
-				<td id="title"> È¸¿ø±¸ºÐ </td>
+				<td id="title"> íšŒì›êµ¬ë¶„ </td>
 				<td>
 					<select name="type">
 						<option>undergraduate</option>
@@ -81,8 +81,8 @@ tr{
 				</td>
 			</tr>
 		</table><br>
-				<input type="submit" value="¼öÁ¤">
-		<input type="button" value="Ãë¼Ò" onclick="goBack()">		
+				<input type="submit" value="ìˆ˜ì •">
+		<input type="button" value="ì·¨ì†Œ" onclick="goBack()">		
 	</form>	
 			</div>
 		</div>
