@@ -5,22 +5,22 @@
 <% request.setCharacterEncoding("euc-kr"); %>
 
 <%	
-	String b_num = request.getParameter("bnum");
-
-	String m_id = (String)session.getAttribute("id");	
+	String bnum = request.getParameter("bnum");
+	String mid = (String)session.getAttribute("id");	
+	String req = "waiting to borrow";
 	
 	Timestamp borrowed = new Timestamp(System.currentTimeMillis());
 	SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
 	String bdate = simpleDate.format(borrowed);
-	// ÇĞºÎ
+	// í•™ë¶€
 	Calendar day1 = Calendar.getInstance();
 	day1.add(Calendar.DATE, +10);
 	String rdate1 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day1.getTime());
-	// ´ëÇĞ¿ø
+	// ëŒ€í•™ì›
 	Calendar day2 = Calendar.getInstance();
 	day2.add(Calendar.DATE, +30);
 	String rdate2 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day2.getTime());
-	// ±³Á÷¿ø
+	// êµì§ì›
 	Calendar day3 = Calendar.getInstance();
 	day2.add(Calendar.DATE, +60);
 	String rdate3 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day3.getTime());
@@ -34,28 +34,29 @@
 		String dbPass = "5826";
 		
 		
-		//DB¿Í ¿¬µ¿À» À§ÇÑ Connection °´Ã¼¸¦ ¾ò¾î³»´Â ºÎºĞ
+		//DBì™€ ì—°ë™ì„ ìœ„í•œ Connection ê°ì²´ë¥¼ ì–»ì–´ë‚´ëŠ” ë¶€ë¶„
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
-		//Äõ¸®¸¦ ¼öÇàÇÏ´Â ºÎºĞ
-		String sql = "insert into library.rent values(?,?,?,?)";
+		//ì¿¼ë¦¬ë¥¼ ìˆ˜í–‰í•˜ëŠ” ë¶€ë¶„
+		String sql = "insert into library.rent values(?,?,?,?,?)";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,b_num);
-		pstmt.setString(2,m_id);
+		pstmt.setString(1,bnum);
+		pstmt.setString(2,mid);
 		pstmt.setString(3,bdate);
 		pstmt.setString(4,rdate1);
-		pstmt.executeUpdate(); //Äõ¸®½ÇÇà
+		pstmt.setString(5,req);
+		pstmt.executeUpdate(); //ì¿¼ë¦¬ì‹¤í–‰
 		
-		//Äõ¸®¸¦ ¼öÇàÇÏ´Â ºÎºĞ
+		//ì¿¼ë¦¬ë¥¼ ìˆ˜í–‰í•˜ëŠ” ë¶€ë¶„
 		String sql1 = "update library.book set borrowed=? where bnum=?";
 		pstmt = conn.prepareStatement(sql1);
 		pstmt.setString(1,x);
-		pstmt.setString(2,b_num);
-		pstmt.executeUpdate(); //Äõ¸®½ÇÇà
+		pstmt.setString(2,bnum);
+		pstmt.executeUpdate(); //ì¿¼ë¦¬ì‹¤í–‰
 		
 		out.println("<script>");
-		out.println("location.href='È¸¿øµµ¼­¸ñ·Ï.jsp'");
+		out.println("location.href='íšŒì›ë„ì„œëª©ë¡.jsp'");
 		out.println("</script>");
 
 	}
