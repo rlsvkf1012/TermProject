@@ -31,19 +31,19 @@ nav{text-align:center;}
 <meta name="viewport" content="width=devide-width, initial-scale=3">
 <link rel="stylesheet" href="css/bootstrap.css">
 
-<title>È¸¿øÁ¤º¸Á¶È¸</title>
+<title>íšŒì›ì •ë³´ì¡°íšŒ</title>
 </head>
 
 <body>
-	<h3 align="center">È¸¿ø¸ñ·Ï</h3><br><br>
+	<h3 align="center">íšŒì›ëª©ë¡</h3><br><br>
 	<table class="blueone" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<th>¾ÆÀÌµğ</th>
-			<th>ºñ¹Ğ¹øÈ£</th>
-			<th>ÀÌ¸§</th>
-			<th>ÀÌ¸ŞÀÏ</th>
-			<th>ÀüÈ­¹øÈ£</th>
-			<th>±¸ºĞ</th>
+			<th>ì•„ì´ë””</th>
+			<th>ë¹„ë°€ë²ˆí˜¸</th>
+			<th>ì´ë¦„</th>
+			<th>ì´ë©”ì¼</th>
+			<th>ì „í™”ë²ˆí˜¸</th>
+			<th>êµ¬ë¶„</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -59,17 +59,17 @@ nav{text-align:center;}
 				String dbId = "root";
 				String dbPass = "5826";
 
-				//DB¿Í ¿¬µ¿À» À§ÇÑ Connection °´Ã¼¸¦ ¾ò¾î³»´Â ºÎºĞ
+				//DBì™€ ì—°ë™ì„ ìœ„í•œ Connection ê°ì²´ë¥¼ ì–»ì–´ë‚´ëŠ” ë¶€ë¶„
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
 				String sql = "select * from library.member";
 				pstmt = conn.prepareStatement(sql);
 
-				// rs ÀúÀå
+				// rs ì €ì¥
 				rs = pstmt.executeQuery(sql);
 
-				// Å×ÀÌºí Ãâ·Â
+				// í…Œì´ë¸” ì¶œë ¥
 				while (rs.next()) {
 					String id = rs.getString("member_id");
 					String passwd = rs.getString("member_pw");
@@ -85,8 +85,8 @@ nav{text-align:center;}
 			<td><%=email%></td>
 			<td><%=phonenumber%></td>
 			<td><%=title%></td>
-			<td><a href="updateMemberForm.jsp">¼öÁ¤</a></td>
-			<td><a href="deleteMember.jsp?id=<%=rs.getString("member_id")%>">Å»Åğ</a></td>
+			<td><a href="íšŒì›ì •ë³´ìˆ˜ì •Form.jsp">ìˆ˜ì •</a></td>
+			<td><a href="deleteMember.jsp?id=<%=rs.getString("member_id")%>">íƒˆí‡´</a></td>
 		</tr>
 		<%
 			}
@@ -113,5 +113,5 @@ nav{text-align:center;}
 	</table>	 	
 </body>
  <br><br>
- <nav><a href="adminHome.jsp">È¨ È­¸éÀ¸·Î</a></nav>
+ <nav><a href="adminHome.jsp">í™ˆ í™”ë©´ìœ¼ë¡œ</a></nav>
 </html>
