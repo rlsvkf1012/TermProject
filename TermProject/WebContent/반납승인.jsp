@@ -25,11 +25,9 @@
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
 		//쿼리를 수행하는 부분
-		String sql = "update library.rent set status=?, rdate=? where booknum=?";
+		String sql = "delete from library.rent where booknum=?";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,complete);
-		pstmt.setString(2,cdate);
-		pstmt.setString(3,booknum);
+		pstmt.setString(1,booknum);
 		pstmt.executeUpdate(); //쿼리실행
 		
 		//쿼리를 수행하는 부분

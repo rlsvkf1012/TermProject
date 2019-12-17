@@ -8,7 +8,7 @@
 
 <%
 	String booknum = request.getParameter("booknum");
-	String O = "O";
+	// String O = "O";
 	String req = "waiting to return";
 
 	Connection conn = null;
@@ -31,11 +31,11 @@
 		pstmt.executeUpdate(); //쿼리실행
 
 		//쿼리를 수행하는 부분
-		String sql1 = "update library.book set borrowed=? where bnum=?";
-		pstmt = conn.prepareStatement(sql1);
-		pstmt.setString(1, O);
-		pstmt.setString(2, booknum);
-		pstmt.executeUpdate(); //쿼리실행
+		// String sql1 = "update book set borrowed=? where bnum=?";
+		// pstmt = conn.prepareStatement(sql1);
+		// pstmt.setString(1, O);
+		// pstmt.setString(2, booknum);
+		// pstmt.executeUpdate(); //쿼리실행
 
 		out.println("<script>");
 		out.println("location.href='내도서현황.jsp'");
