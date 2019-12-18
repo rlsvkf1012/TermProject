@@ -54,7 +54,6 @@ nav{text-align:center;}
 			<th>저자</th>
 			<th>출판사</th>
 			<th>대출가능</th>
-			<th>예약가능</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -97,7 +96,6 @@ nav{text-align:center;}
 			<td><%=author%></td>
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
-			<td><%=reserved%></td>
 			
 			<% if (borrowed.equals("X")){ %>
 				<td>대출 중</td>
