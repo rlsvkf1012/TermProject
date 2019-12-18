@@ -70,7 +70,7 @@ nav{text-align:center;}
 			<th>저자</th>
 			<th>출판사</th>
 			<th>대출가능</th>
-			<th>예약가능</th>
+			<th>예약여부</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -84,7 +84,7 @@ nav{text-align:center;}
 			try {
 				String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 				String dbId = "root";
-				String dbPass = "5826";
+				String dbPass = "football12";
 
 				//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 				Class.forName("com.mysql.jdbc.Driver");
@@ -114,12 +114,18 @@ nav{text-align:center;}
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
 			<td><%=reserved%></td>
+			
 			<% if (borrowed.equals("X")){ %>
 				<td>대출 중</td>
 			<% } else { %>
 				<td><a href="도서대출.jsp?bnum=<%=rs.getString("bnum")%>">대출</a></td>
 			<% } %>
-			<td><a href="도서예약.jsp?bnum=<%=rs.getString("bnum")%>">예약</a></td>
+			<% if (borrowed.equals("O")){ %>
+				<td></td>
+			<% } else { %>
+				<td><a href="도서예약.jsp?bnum=<%=rs.getString("bnum")%>">예약</a></td>
+			<% } %>
+			
 		</tr>
 		<%
 			}

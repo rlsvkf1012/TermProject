@@ -69,7 +69,7 @@ nav {
 			try {
 				String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 				String dbId = "root";
-				String dbPass = "5826";
+				String dbPass = "football12";
 
 				//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 				Class.forName("com.mysql.jdbc.Driver");
@@ -111,8 +111,18 @@ nav {
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
 			<td><%=reserved%></td>
-			<td><a href="도서정보수정Form.jsp?bnum=<%=rs.getString("bnum")%>">수정</a></td>
-			<td><a href="도서삭제.jsp?bnum=<%=rs.getString("bnum")%>">삭제</a></td>
+			
+			<% if (borrowed.equals("X")){ %>
+				<td>대출 중</td>
+			<% } else { %>
+				<td><a href="도서대출.jsp?bnum=<%=rs.getString("bnum")%>">대출</a></td>
+			<% } %>
+			<% if (borrowed.equals("O")){ %>
+				<td></td>
+			<% } else { %>
+				<td><a href="도서예약.jsp?bnum=<%=rs.getString("bnum")%>">예약</a></td>
+			<% } %>
+			
 		</tr>
 		<%
 			}

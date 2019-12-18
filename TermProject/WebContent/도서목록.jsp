@@ -31,30 +31,30 @@ nav{text-align:center;}
 <meta name="viewport" content="width=devide-width, initial-scale=3">
 <link rel="stylesheet" href="css/bootstrap.css">
 
-<title>ë„ì„œëª©ë¡ì¡°íšŒ</title>
+<title>µµ¼­¸ñ·ÏÁ¶È¸</title>
 </head>
 
 <body>
-	<h3 align="center">ë„ì„œëª©ë¡</h3><br><br>
+	<h3 align="center">µµ¼­¸ñ·Ï</h3><br><br>
 	
-		<form action="ê´€ë¦¬ìë„ì„œê²€ìƒ‰.jsp" name="search" method="post">
+		<form action="°ü¸®ÀÚµµ¼­°Ë»ö.jsp" name="search" method="post">
 		<div class="search" style="text-align:center">
-		ì±… ì œëª© : <input type="text" name="title" placeholder="ì±… ì œëª© ì…ë ¥">&emsp; 
-		ISBN : <input type="text" name="ISBN" placeholder="ISBN ì…ë ¥"> 	
-		<button type="submit" value="ê²€ìƒ‰">ê²€ìƒ‰</button>
+		Ã¥ Á¦¸ñ : <input type="text" name="title" placeholder="Ã¥ Á¦¸ñ ÀÔ·Â">&emsp; 
+		ISBN : <input type="text" name="ISBN" placeholder="ISBN ÀÔ·Â"> 	
+		<button type="submit" value="°Ë»ö">°Ë»ö</button>
 		</div>
 		</form><br><br>
 	
 	
 	<table class="blueone" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<th>ë„ì„œë²ˆí˜¸</th>
+			<th>µµ¼­¹øÈ£</th>
 			<th>ISBN</th>
-			<th>ì±… ì œëª©</th>
-			<th>ì €ì</th>
-			<th>ì¶œíŒì‚¬</th>
-			<th>ëŒ€ì¶œê°€ëŠ¥</th>
-			<th>ì˜ˆì•½ê°€ëŠ¥</th>
+			<th>Ã¥ Á¦¸ñ</th>
+			<th>ÀúÀÚ</th>
+			<th>ÃâÆÇ»ç</th>
+			<th>´ëÃâ°¡´É</th>
+			<th>¿¹¾à°¡´É</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -68,19 +68,19 @@ nav{text-align:center;}
 			try {
 				String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 				String dbId = "root";
-				String dbPass = "5826";
+				String dbPass = "football12";
 
-				//DBì™€ ì—°ë™ì„ ìœ„í•œ Connection ê°ì²´ë¥¼ ì–»ì–´ë‚´ëŠ” ë¶€ë¶„
+				//DB¿Í ¿¬µ¿À» À§ÇÑ Connection °´Ã¼¸¦ ¾ò¾î³»´Â ºÎºĞ
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
 				String sql = "select * from library.book";
 				pstmt = conn.prepareStatement(sql);
 
-				// rs ì €ì¥
+				// rs ÀúÀå
 				rs = pstmt.executeQuery(sql);
 
-				// í…Œì´ë¸” ì¶œë ¥
+				// Å×ÀÌºí Ãâ·Â
 				while (rs.next()) {
 					String bnum = rs.getString("bnum");
 					String ISBN = rs.getString("ISBN");
@@ -98,8 +98,18 @@ nav{text-align:center;}
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
 			<td><%=reserved%></td>
-			<td><a href="ë„ì„œì •ë³´ìˆ˜ì •Form.jsp?bnum=<%=rs.getString("bnum")%>">ìˆ˜ì •</a></td>
-			<td><a href="ë„ì„œì‚­ì œ.jsp?bnum=<%=rs.getString("bnum")%>">ì‚­ì œ</a></td>
+			
+			<% if (borrowed.equals("X")){ %>
+				<td>´ëÃâ Áß</td>
+			<% } else { %>
+				<td><a href="µµ¼­´ëÃâ.jsp?bnum=<%=rs.getString("bnum")%>">´ëÃâ</a></td>
+			<% } %>
+			<% if (borrowed.equals("O")){ %>
+				<td></td>
+			<% } else { %>
+				<td><a href="µµ¼­¿¹¾à.jsp?bnum=<%=rs.getString("bnum")%>">¿¹¾à</a></td>
+			<% } %>
+			
 		</tr>
 		<%
 			}
@@ -126,6 +136,6 @@ nav{text-align:center;}
 	</table>	 	
 </body>
  <br><br>
- <nav><a href="ë„ì„œë“±ë¡Form.jsp">ë„ì„œë“±ë¡</a></nav>
- <nav><a href="adminHome.jsp">í™ˆ í™”ë©´ìœ¼ë¡œ</a></nav>
+ <nav><a href="µµ¼­µî·ÏForm.jsp">µµ¼­µî·Ï</a></nav>
+ <nav><a href="adminHome.jsp">È¨ È­¸éÀ¸·Î</a></nav>
 </html>
