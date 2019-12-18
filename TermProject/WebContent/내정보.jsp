@@ -39,14 +39,14 @@ nav{text-align:center;}
 </style>
 <meta name="viewport" content="width=devide-width, initial-scale=3">
 <link rel="stylesheet" href="css/bootstrap.css">
-<title>��������ȸ</title>
+<title>내정보조회</title>
 </head>
 <body>
 	<nav class="navbar navbar-default">
-		<span class="navbar-text"> <%=id %> �� �ݰ����ϴ� !
+		<span class="navbar-text"> <%=id %> 님 반갑습니다 !
 		</span>
 		<ul id="nav" class="nav navbar-nav">
-			<li><a href="�α׾ƿ�.jsp">�α׾ƿ�</a></li>
+			<li><a href="로그아웃.jsp">로그아웃</a></li>
 		</ul>
 	</nav>
 	
@@ -54,7 +54,7 @@ nav{text-align:center;}
 	<div class="col-lg-4"></div>
 	<div class="col-lg-4">
 	<div class="jumbotron" style="padding-top: 20px; text-align:center">
-	<h3 style="text-align: center">�� ����</h3><br><br>
+	<h3 style="text-align: center">내 정보</h3><br><br>
 <%
 	String id2 = id;
 	request.setCharacterEncoding("euc-kr");
@@ -68,7 +68,7 @@ nav{text-align:center;}
 		String dbId = "root";
 		String dbPass = "5826";
 
-		//DB�� ������ ���� Connection ��ü�� ���� �κ�
+		//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
@@ -77,7 +77,7 @@ nav{text-align:center;}
 		pstmt.setString(1, id2);
 		rs = pstmt.executeQuery();
 
-		// ���̺� ���
+		// 테이블 출력
 	while (rs.next()) {
 		String id3 = rs.getString("member_id");
 		String passwd = rs.getString("member_pw");
@@ -89,27 +89,27 @@ nav{text-align:center;}
 		
 	<table class="blueone" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<td>���̵�</td>
+			<td>아이디</td>
 			<td><%=id%></td>
 		</tr>
 		<tr>
-			<td>��й�ȣ</td>
+			<td>비밀번호</td>
 			<td><%=passwd%></td>
 		</tr>
 		<tr>
-			<td>�̸�</td>
+			<td>이름</td>
 			<td><%=name%></td>
 		</tr>
 		<tr>
-			<td>�̸���</td>
+			<td>이메일</td>
 			<td><%=email%></td>
 		</tr>
 		<tr>
-			<td>��ȭ��ȣ</td>
+			<td>전화번호</td>
 			<td><%=phonenumber%></td>
 		</tr>
 		<tr>
-			<td>ȸ������</td>
+			<td>회원구분</td>
 			<td><%=title%></td>
 		</tr>
 		<%
@@ -118,10 +118,11 @@ nav{text-align:center;}
 				e.printStackTrace();
 			}
 		%>
-	</table>
+	</table><br>
+	<nav><a href="회원탈퇴.jsp">회원탈퇴</a></nav>
 	<br><br>
-	<button type="button" class = "btn btn-info btn-sm" onclick="location.href='ȸ����������Form.jsp'" >�����ϱ�</button>
-	<button type="button" class = "btn btn-info btn-sm" onclick="location.href='Home.jsp'" >Ȩ����</button>
+	<button type="button" class = "btn btn-info btn-sm" onclick="location.href='회원정보수정Form.jsp'">수정하기</button>
+	<button type="button" class = "btn btn-info btn-sm" onclick="location.href='Home.jsp'">홈으로</button>
 	</div>
 	</div>
 	</div>
