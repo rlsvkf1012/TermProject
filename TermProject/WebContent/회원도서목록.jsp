@@ -41,36 +41,36 @@ nav{text-align:center;}
 <meta name="viewport" content="width=device-width, initial-scale=3">
 <link rel="stylesheet" href="css/bootstrap.css">
 
-<title>È¸¿øµµ¼­¸ñ·ÏÁ¶È¸</title>
+<title>íšŒì›ë„ì„œëª©ë¡ì¡°íšŒ</title>
 </head>
 
 <body>
 	<nav class="navbar navbar-default">
-		<span class="navbar-text"> <%=id %> ´Ô ¹İ°©½À´Ï´Ù ! </span>
+		<span class="navbar-text"> <%=id %> ë‹˜ ë°˜ê°‘ìŠµë‹ˆë‹¤ ! </span>
 		<ul id="nav" class="nav navbar-nav">
-			<li><a href="·Î±×¾Æ¿ô.jsp">·Î±×¾Æ¿ô</a></li>
+			<li><a href="ë¡œê·¸ì•„ì›ƒ.jsp">ë¡œê·¸ì•„ì›ƒ</a></li>
 		</ul>
 	</nav>
-	<h3 align="center">µµ¼­¸ñ·Ï</h3><br><br>
+	<h3 align="center">ë„ì„œëª©ë¡</h3><br><br>
 	
-		<form action="µµ¼­°Ë»ö.jsp" name="search" method="post">
+		<form action="íšŒì›ë„ì„œê²€ìƒ‰.jsp" name="search" method="post">
 		<div class="search" style="text-align:center">
-		Ã¥ Á¦¸ñ : <input type="text" name="title" placeholder="Ã¥ Á¦¸ñ ÀÔ·Â">&emsp; 
-		ISBN : <input type="text" name="ISBN" placeholder="ISBN ÀÔ·Â"> 	
-		<button type="submit" value="°Ë»ö">°Ë»ö</button>
+		ì±… ì œëª© : <input type="text" name="title" placeholder="ì±… ì œëª© ì…ë ¥">&emsp; 
+		ISBN : <input type="text" name="ISBN" placeholder="ISBN ì…ë ¥"> 	
+		<button type="submit" value="ê²€ìƒ‰">ê²€ìƒ‰</button>
 		</div>
 		</form><br><br>
 	
 	
 	<table class="blueone" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<th>µµ¼­¹øÈ£</th>
+			<th>ë„ì„œë²ˆí˜¸</th>
 			<th>ISBN</th>
-			<th>Ã¥ Á¦¸ñ</th>
-			<th>ÀúÀÚ</th>
-			<th>ÃâÆÇ»ç</th>
-			<th>´ëÃâ°¡´É</th>
-			<th>¿¹¾à°¡´É</th>
+			<th>ì±… ì œëª©</th>
+			<th>ì €ì</th>
+			<th>ì¶œíŒì‚¬</th>
+			<th>ëŒ€ì¶œê°€ëŠ¥</th>
+			<th>ì˜ˆì•½ê°€ëŠ¥</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -86,17 +86,17 @@ nav{text-align:center;}
 				String dbId = "root";
 				String dbPass = "5826";
 
-				//DB¿Í ¿¬µ¿À» À§ÇÑ Connection °´Ã¼¸¦ ¾ò¾î³»´Â ºÎºĞ
+				//DBì™€ ì—°ë™ì„ ìœ„í•œ Connection ê°ì²´ë¥¼ ì–»ì–´ë‚´ëŠ” ë¶€ë¶„
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
 				String sql = "select * from library.book";
 				pstmt = conn.prepareStatement(sql);
 
-				// rs ÀúÀå
+				// rs ì €ì¥
 				rs = pstmt.executeQuery(sql);
 
-				// Å×ÀÌºí Ãâ·Â
+				// í…Œì´ë¸” ì¶œë ¥
 				while (rs.next()) {
 					String bnum = rs.getString("bnum");
 					String ISBN = rs.getString("ISBN");
@@ -114,8 +114,8 @@ nav{text-align:center;}
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
 			<td><%=reserved%></td>
-			<td><a href="µµ¼­´ëÃâ.jsp?bnum=<%=rs.getString("bnum")%>">´ëÃâ</a></td>
-			<td><a href="µµ¼­¿¹¾à.jsp?bnum=<%=rs.getString("bnum")%>">¿¹¾à</a></td>
+			<td><a href="ë„ì„œëŒ€ì¶œ.jsp?bnum=<%=rs.getString("bnum")%>">ëŒ€ì¶œ</a></td>
+			<td><a href="ë„ì„œì˜ˆì•½.jsp?bnum=<%=rs.getString("bnum")%>">ì˜ˆì•½</a></td>
 		</tr>
 		<%
 			}
@@ -142,5 +142,5 @@ nav{text-align:center;}
 	</table>	 	
 </body>
  <br><br>
- <nav><a href="Home.jsp">È¨ È­¸éÀ¸·Î</a></nav>
+ <nav><a href="Home.jsp">í™ˆ í™”ë©´ìœ¼ë¡œ</a></nav>
 </html>
