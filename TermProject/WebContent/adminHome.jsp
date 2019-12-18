@@ -34,7 +34,8 @@
 			<h3 style="text-align: center">관리자 메뉴</h3><br><br><br>
 			<button type="button" class = "btn btn-info" onclick="location.href='Info.jsp'" >회원정보 관리하기</button><br><br><br><br>
 			<button type="button" class = "btn btn-info" onclick="location.href='도서목록.jsp'" >도서정보 관리하기</button><br><br><br><br>
-			<button type="button" class = "btn btn-info" onclick="location.href='관리자도서현황.jsp'" >도서반납 관리하기</button>
+			<button type="button" class = "btn btn-info" onclick="location.href='관리자도서현황.jsp'" >도서반납 관리하기</button><br><br><br><br>
+			<button type="button" class = "btn btn-info" onclick="location.href='대출현황.jsp'" >대출현황 확인하기</button>
 				</form><br><br><br>
 			<a href="로그아웃.jsp">로그아웃</a>				
 		</div>
