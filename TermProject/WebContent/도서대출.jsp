@@ -31,7 +31,7 @@
 	try{
 		String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
-		String dbPass = "5862";
+		String dbPass = "5826";
 		
 		
 		//DB와 연동을 위한 Connection 객체를 얻어내는 부분
@@ -51,21 +51,23 @@
 		}
 		
 		//쿼리를 수행하는 부분
-		String sql2 = "insert into library.rent values(?,?,?,?,?)";
+		String sql2 = "insert into library.rent values(?,?,?,?,?,?)";
 		pstmt = conn.prepareStatement(sql2);
-		pstmt.setString(1,bnum);
-		pstmt.setString(2,mid);
-		pstmt.setString(3,bdate);
+		
+		pstmt.setString(1,null);
+		pstmt.setString(2,bnum);
+		pstmt.setString(3,mid);
+		pstmt.setString(4,bdate);
 		
 		if(tmp_title.equals("undergraduate")) {
-			pstmt.setString(4,rdate1);
+			pstmt.setString(5,rdate1);
 		} else if(tmp_title.equals("postgraduate")) {
-			pstmt.setString(4,rdate2);
+			pstmt.setString(5,rdate2);
 		} else if(tmp_title.equals("faculty")) {
-			pstmt.setString(4,rdate3);
+			pstmt.setString(5,rdate3);
 		}
 		
-		pstmt.setString(5,status);
+		pstmt.setString(6,status);
 		pstmt.executeUpdate(); //쿼리실행
 		
 		//쿼리를 수행하는 부분
