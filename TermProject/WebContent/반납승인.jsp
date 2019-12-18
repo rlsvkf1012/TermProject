@@ -5,7 +5,9 @@
 <% request.setCharacterEncoding("euc-kr"); %>
 
 <%	
-	String booknum = request.getParameter("booknum");
+	String tmp_rent_id = request.getParameter("rent_id");
+	int rent_id = Integer.parseInt(tmp_rent_id);
+	
 	String O = "O";
 	String complete="complete";
 	Timestamp comd = new Timestamp(System.currentTimeMillis());
@@ -25,15 +27,27 @@
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
 		//쿼리를 수행하는 부분
-		String sql = "update library.rent set status=? where booknum=?";
+		String sql = "update library.rent set status=? where rent_id=?";
 		pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1,complete);
-		pstmt.setString(2,booknum);
+		pstmt.setInt(2,rent_id);
 		pstmt.executeUpdate(); //쿼리실행
 		
-		//쿼리를 수행하는 부분
-		String sql1 = "update library.book set borrowed=? where bnum=?";
+		String sql1 = "select * from library.rent where rent_id=?";
 		pstmt = conn.prepareStatement(sql1);
+		pstmt.setInt(1,rent_id);
+		ResultSet rs = null;
+		rs = pstmt.executeQuery();
+		
+		String booknum = null;
+		
+		while (rs.next()) {
+			booknum = rs.getString("booknum");
+		}
+		
+		//쿼리를 수행하는 부분
+		String sql2 = "update library.book set borrowed=? where bnum=?";
+		pstmt = conn.prepareStatement(sql2);
 		pstmt.setString(1,O);
 		pstmt.setString(2,booknum);
 		pstmt.executeUpdate(); //쿼리실행

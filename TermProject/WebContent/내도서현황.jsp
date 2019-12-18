@@ -100,6 +100,7 @@ nav {
 
 							// Å×ÀÌºí Ãâ·Â
 							while (rs.next()) {
+								// int rent_id = rs.getInt("rent_id");
 								String booknum = rs.getString("booknum");
 								String memid = rs.getString("memid");
 								String borrow_date = rs.getString("borrow_date");
@@ -113,7 +114,7 @@ nav {
 						<td><%=return_date%></td>
 						<td><%=status%></td>
 						<% if(status.equals("borrow")){ %>
-						<td><a href="¹Ý³³¿äÃ».jsp?booknum=<%=rs.getString("booknum")%>">¹Ý³³</a></td><%}%>
+						<td><a href="¹Ý³³¿äÃ».jsp?rent_id=<%=rs.getInt("rent_id")%>">¹Ý³³</a></td><%}%>
 					</tr>
 					<%
 						}

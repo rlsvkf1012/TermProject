@@ -78,7 +78,7 @@ nav {
 					</tr>
 					<%
 						String status1 = "waiting to return";
-						String status2 = "waiting to borrow";
+						// String status2 = "waiting to borrow";
 						request.setCharacterEncoding("euc-kr");
 						Connection conn = null;
 						PreparedStatement pstmt = null;
@@ -101,6 +101,7 @@ nav {
 
 							// 테이블 출력
 							while (rs.next()) {
+								// int rent_id = rs.getInt("rent_id");
 								String booknum = rs.getString("booknum");
 								String memid = rs.getString("memid");
 								String borrow_date = rs.getString("borrow_date");
@@ -114,7 +115,7 @@ nav {
 						<td><%=return_date%></td>
 						<td><%=status%></td>
 						<% if(status.equals(status1)){ %>
-						<td><a href="반납승인.jsp?booknum=<%=rs.getString("booknum")%>">승인</a></td><%}%>
+						<td><a href="반납승인.jsp?rent_id=<%=rs.getInt("rent_id")%>">승인</a></td><%}%>
 					</tr>
 					<%
 						}
