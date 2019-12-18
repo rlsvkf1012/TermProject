@@ -22,7 +22,7 @@
 	String rdate2 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day2.getTime());
 	// 교직원
 	Calendar day3 = Calendar.getInstance();
-	day2.add(Calendar.DATE, +60);
+	day3.add(Calendar.DATE, +60);
 	String rdate3 = new java.text.SimpleDateFormat("yyyy-MM-dd").format(day3.getTime());
 	String x ="X";
 	Connection conn = null;
@@ -31,26 +31,46 @@
 	try{
 		String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
-		String dbPass = "5826";
+		String dbPass = "5862";
 		
 		
 		//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
+		String sql1 = "select * from library.member where member_id=?";
+		pstmt = conn.prepareStatement(sql1);
+		pstmt.setString(1,mid);
+		ResultSet rs = null;
+		rs = pstmt.executeQuery();
+		
+		String tmp_title = null;
+		
+		while (rs.next()) {
+			tmp_title = rs.getString("member_title");
+		}
+		
 		//쿼리를 수행하는 부분
-		String sql = "insert into library.rent values(?,?,?,?,?)";
-		pstmt = conn.prepareStatement(sql);
+		String sql2 = "insert into library.rent values(?,?,?,?,?)";
+		pstmt = conn.prepareStatement(sql2);
 		pstmt.setString(1,bnum);
 		pstmt.setString(2,mid);
 		pstmt.setString(3,bdate);
-		pstmt.setString(4,rdate1);
+		
+		if(tmp_title.equals("undergraduate")) {
+			pstmt.setString(4,rdate1);
+		} else if(tmp_title.equals("postgraduate")) {
+			pstmt.setString(4,rdate2);
+		} else if(tmp_title.equals("faculty")) {
+			pstmt.setString(4,rdate3);
+		}
+		
 		pstmt.setString(5,status);
 		pstmt.executeUpdate(); //쿼리실행
 		
 		//쿼리를 수행하는 부분
-		String sql1 = "update library.book set borrowed=? where bnum=?";
-		pstmt = conn.prepareStatement(sql1);
+		String sql3 = "update library.book set borrowed=? where bnum=?";
+		pstmt = conn.prepareStatement(sql3);
 		pstmt.setString(1,x);
 		pstmt.setString(2,bnum);
 		pstmt.executeUpdate(); //쿼리실행
