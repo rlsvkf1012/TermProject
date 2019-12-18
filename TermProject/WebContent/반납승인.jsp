@@ -26,11 +26,14 @@
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
+		String finish = simpleDate.format(comd);
+		
 		//쿼리를 수행하는 부분
-		String sql = "update library.rent set status=? where rent_id=?";
+		String sql = "update library.rent set rdate=?, status=? where rent_id=?";
 		pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1,complete);
-		pstmt.setInt(2,rent_id);
+		pstmt.setString(1,finish);
+		pstmt.setString(2,complete);
+		pstmt.setInt(3,rent_id);
 		pstmt.executeUpdate(); //쿼리실행
 		
 		String sql1 = "select * from library.rent where rent_id=?";
