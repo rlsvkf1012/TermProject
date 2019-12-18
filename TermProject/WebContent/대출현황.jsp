@@ -72,7 +72,7 @@ nav {
 						<th>도서번호</th>
 						<th>아이디</th>
 						<th>대출일</th>
-						<th>반납일</th>
+						<th>반납(예정)일</th>
 						<th>상태</th>
 						<th></th>
 					</tr>
@@ -87,7 +87,7 @@ nav {
 						try {
 							String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 							String dbId = "root";
-							String dbPass = "5826";
+							String dbPass = "football12";
 
 							//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 							Class.forName("com.mysql.jdbc.Driver");
@@ -138,6 +138,7 @@ nav {
 				</table>
 				<br>
 				<br>
+				<nav><a href="Top10회원.jsp">Top10 회원 조회</a></nav><br><br>
 				<button type="button" class="btn btn-info btn-sm" onclick="location.href='adminHome.jsp'">관리자 홈으로</button>
 			</div>
 		</div>

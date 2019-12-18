@@ -63,7 +63,7 @@ nav {
 		<div class="col-lg-12"></div>
 		<div class="col-lg-12">
 			<div class="jumbotron" style="padding-top: 20px; text-align: center">
-				<h3 style="text-align: center">내 도서 관리</h3>
+				<h3 style="text-align: center">예약 현황</h3>
 				<br>
 				<br>
 
@@ -79,6 +79,8 @@ nav {
 					<%
 						String memid1 = id;
 						request.setCharacterEncoding("euc-kr");
+						String bnum = request.getParameter("bnum");
+						String mid = (String)session.getAttribute("id");
 						Connection conn = null;
 						PreparedStatement pstmt = null;
 						String str = "";
@@ -93,28 +95,27 @@ nav {
 							Class.forName("com.mysql.jdbc.Driver");
 							conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
-							String sql = "select * from library.rent WHERE memid=?";
+							String sql = "select * from library.reserve WHERE resid=?";
 							pstmt = conn.prepareStatement(sql);
 							pstmt.setString(1,memid1);
 							rs = pstmt.executeQuery();
-
+							
 							// 테이블 출력
 							while (rs.next()) {
-								// int rent_id = rs.getInt("rent_id");
-								String booknum = rs.getString("booknum");
-								String memid = rs.getString("memid");
-								String borrow_date = rs.getString("borrow_date");
-								String return_date = rs.getString("rdate");
+								String booknum = rs.getString("bnum");
+								String resid = rs.getString("resid");
+								String borrow_date = rs.getString("resdate");
+								String return_date = rs.getString("returndate");
 								String status = rs.getString("status");
 					%>
 					<tr>
 						<td><%=booknum%></td>
-						<td><%=memid%></td>
+						<td><%=resid%></td>
 						<td><%=borrow_date%></td>
 						<td><%=return_date%></td>
 						<td><%=status%></td>
-						<% if(status.equals("borrow")){ %>
-						<td><a href="반납요청.jsp?rent_id=<%=rs.getInt("rent_id")%>">반납</a></td><%}%>
+						<% if(status.equals("reserved")){ %>
+						<td><a href="대기자현황.jsp?res_id=<%=rs.getString("res_id")%>">대기자현황</a></td><%}%>
 					</tr>
 					<%
 						}
@@ -141,8 +142,7 @@ nav {
 				</table>
 				<br>
 				<br>
-				<button type="button" class="btn btn-info btn-sm" onclick="location.href='예약현황.jsp'">예약현황</button>
-				<button type="button" class="btn btn-info btn-sm" onclick="location.href='Home.jsp'">홈으로</button>
+				<button type="button" class = "btn btn-info btn-sm" onclick="location.href='Home.jsp'" >홈으로</button>
 			</div>
 		</div>
 	</div>

@@ -63,7 +63,7 @@ nav {
 		<div class="col-lg-12"></div>
 		<div class="col-lg-12">
 			<div class="jumbotron" style="padding-top: 20px; text-align: center">
-				<h3 style="text-align: center">내 도서 관리</h3>
+				<h3 style="text-align: center">대기자 현황</h3>
 				<br>
 				<br>
 
@@ -73,11 +73,14 @@ nav {
 						<th>아이디</th>
 						<th>대출일</th>
 						<th>반납(예정)일</th>
-						<th>상태</th>
+						<th>대기인원</th>
 						<th></th>
 					</tr>
 					<%
 						String memid1 = id;
+						String bnum = request.getParameter("bnum");
+						String tmp_res_id = request.getParameter("res_id");
+						int res_id = Integer.parseInt(tmp_res_id);
 						request.setCharacterEncoding("euc-kr");
 						Connection conn = null;
 						PreparedStatement pstmt = null;
@@ -93,31 +96,30 @@ nav {
 							Class.forName("com.mysql.jdbc.Driver");
 							conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
-							String sql = "select * from library.rent WHERE memid=?";
+							String sql = "select * from library.reserve WHERE res_id=?";
 							pstmt = conn.prepareStatement(sql);
-							pstmt.setString(1,memid1);
+							pstmt.setInt(1,res_id);
 							rs = pstmt.executeQuery();
-
 							// 테이블 출력
 							while (rs.next()) {
-								// int rent_id = rs.getInt("rent_id");
-								String booknum = rs.getString("booknum");
-								String memid = rs.getString("memid");
-								String borrow_date = rs.getString("borrow_date");
-								String return_date = rs.getString("rdate");
-								String status = rs.getString("status");
+
+								String booknum = rs.getString("bnum");
+								String resid = rs.getString("resid");
+								String borrow_date = rs.getString("resdate");
+								String return_date = rs.getString("returndate");
+								String count = rs.getString("bnum");
 					%>
 					<tr>
 						<td><%=booknum%></td>
-						<td><%=memid%></td>
+						<td><%=resid%></td>
 						<td><%=borrow_date%></td>
 						<td><%=return_date%></td>
-						<td><%=status%></td>
-						<% if(status.equals("borrow")){ %>
-						<td><a href="반납요청.jsp?rent_id=<%=rs.getInt("rent_id")%>">반납</a></td><%}%>
+						<td><%=count%></td>
+						<td><a href="예약취소.jsp?res_id=<%=rs.getString("res_id")%>">예약취소</a></td><%}%>
 					</tr>
+					
 					<%
-						}
+						
 						} catch (Exception e) {
 							e.printStackTrace();
 						} finally {
@@ -141,8 +143,7 @@ nav {
 				</table>
 				<br>
 				<br>
-				<button type="button" class="btn btn-info btn-sm" onclick="location.href='예약현황.jsp'">예약현황</button>
-				<button type="button" class="btn btn-info btn-sm" onclick="location.href='Home.jsp'">홈으로</button>
+				<button type="button" class = "btn btn-info btn-sm" onclick="location.href='Home.jsp'" >홈으로</button>
 			</div>
 		</div>
 	</div>
