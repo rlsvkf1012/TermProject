@@ -39,20 +39,20 @@ nav {
 <meta name="viewport" content="width=devide-width, initial-scale=3">
 <link rel="stylesheet" href="css/bootstrap.css">
 
-<title>ë„ì„œê²€ìƒ‰</title>
+<title>µµ¼­°Ë»ö</title>
 </head>
 
 <body>
-	<h3 align="center">ê²€ìƒ‰ëœ ë„ì„œëª©ë¡</h3><br><br>
+	<h3 align="center">°Ë»öµÈ µµ¼­¸ñ·Ï</h3><br><br>
 	<table class="blueone" style="margin-left: auto; margin-right: auto;">
 		<tr>
-			<th>ë„ì„œë²ˆí˜¸</th>
+			<th>µµ¼­¹øÈ£</th>
 			<th>ISBN</th>
-			<th>ì±… ì œëª©</th>
-			<th>ì €ì</th>
-			<th>ì¶œíŒì‚¬</th>
-			<th>ëŒ€ì¶œê°€ëŠ¥</th>
-			<th>ì˜ˆì•½ê°€ëŠ¥</th>
+			<th>Ã¥ Á¦¸ñ</th>
+			<th>ÀúÀÚ</th>
+			<th>ÃâÆÇ»ç</th>
+			<th>´ëÃâ°¡´É</th>
+			<th>¿¹¾à°¡´É</th>
 			<th></th>
 			<th></th>
 		</tr>
@@ -71,18 +71,29 @@ nav {
 				String dbId = "root";
 				String dbPass = "5826";
 
-				//DBì™€ ì—°ë™ì„ ìœ„í•œ Connection ê°ì²´ë¥¼ ì–»ì–´ë‚´ëŠ” ë¶€ë¶„
+				//DB¿Í ¿¬µ¿À» À§ÇÑ Connection °´Ã¼¸¦ ¾ò¾î³»´Â ºÎºĞ
 				Class.forName("com.mysql.jdbc.Driver");
 				conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 
-				String sql = "select * from library.book where btitle=?";
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1,stitle);
+				if (sISBN.equals("")) {
+					String sql = "select * from library.book where btitle=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1,stitle);
+				} else if (stitle.equals("")) {
+					String sql = "select * from library.book where ISBN=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1,sISBN);
+				} else {
+					String sql = "select * from library.book where btitle=? && ISBN=?";
+					pstmt = conn.prepareStatement(sql);
+					pstmt.setString(1,stitle);
+					pstmt.setString(2,sISBN);
+				}
 
-				// rs ì €ì¥
+				// rs ÀúÀå
 				rs = pstmt.executeQuery();
 
-				// í…Œì´ë¸” ì¶œë ¥
+				// Å×ÀÌºí Ãâ·Â
 				while (rs.next()) {
 					String bnum = rs.getString("bnum");
 					String ISBN = rs.getString("ISBN");
@@ -100,8 +111,8 @@ nav {
 			<td><%=publication%></td>
 			<td><%=borrowed%></td>
 			<td><%=reserved%></td>
-			<td><a href="ë„ì„œëŒ€ì¶œ.jsp?bnum=<%=rs.getString("bnum")%>">ëŒ€ì¶œ</a></td>
-			<td><a href="ë„ì„œì˜ˆì•½.jsp?bnum=<%=rs.getString("bnum")%>">ì˜ˆì•½</a></td>
+			<td><a href="µµ¼­´ëÃâ.jsp?bnum=<%=rs.getString("bnum")%>">´ëÃâ</a></td>
+			<td><a href="µµ¼­¿¹¾à.jsp?bnum=<%=rs.getString("bnum")%>">¿¹¾à</a></td>
 		</tr>
 		<%
 			}
@@ -128,6 +139,6 @@ nav {
 	</table>
 </body>
 <br><br>
-<nav><a href="Home.jsp">í™ˆ í™”ë©´ìœ¼ë¡œ</a></nav>
+<nav><a href="Home.jsp">È¨ È­¸éÀ¸·Î</a></nav>
 
 </html>
