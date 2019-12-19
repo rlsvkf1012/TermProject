@@ -13,28 +13,42 @@
 	Connection conn = null;
 	PreparedStatement pstmt = null;
 	ResultSet rs = null;
+	String rdate = null;
+	int date_case = 0;
 	
 	try{
 		String jdbcUrl = "jdbc:mysql://localhost:3306/jspdatabase?serverTimezone=UTC&useSSL=false";
 		String dbId = "root";
 		String dbPass = "football12";
 		
-		
 		//DB와 연동을 위한 Connection 객체를 얻어내는 부분
 		Class.forName("com.mysql.jdbc.Driver");
 		conn = DriverManager.getConnection(jdbcUrl, dbId, dbPass);
 		
-		//퀴리문 - rent 테이블 데이터 가져오기
-		String sql1 = "select * from library.rent where booknum=?";
-		pstmt = conn.prepareStatement(sql1);
+		String sql0 = "select * from library.reserve where bnum=?";
+		pstmt = conn.prepareStatement(sql0);
 		pstmt.setString(1,bnum);
-
 		rs = pstmt.executeQuery();
 		
 		//반납예정일 - reserve테이블의 resdate에 넣음
-		String rdate = null;	
 		while (rs.next()) {
-			rdate = rs.getString("rdate");
+			rdate = rs.getString("returndate");
+		}
+		
+		if (rdate==null)
+			date_case = 1;
+		
+		if (date_case==1) {
+			//퀴리문 - rent 테이블 데이터 가져오기
+			String sql1 = "select * from library.rent where booknum=?";
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setString(1,bnum);
+			rs = pstmt.executeQuery();
+			
+			//반납예정일 - reserve테이블의 resdate에 넣음	
+			while (rs.next()) {
+				rdate = rs.getString("rdate");
+			}
 		}
 		
 		//퀴리문 - member 테이블 데이터 가져오기
